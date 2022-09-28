@@ -41,11 +41,11 @@ function main() {
   var modelMatrix = new Matrix4();
 
   // Calculate a model matrix
-  var ANGLE = 60.0; // The rotation angle
+  var ANGLE = 30.0; // The rotation angle
   var Tx = 0.5;     // Translation distance
   modelMatrix.setTranslate(0, Tx, 0);  // Set translation matrix
   modelMatrix.rotate(ANGLE, 0, 0, 1);
-    // Set translation matrix
+  modelMatrix.translate(0, -Tx, 0);  // Set translation matrix
     // Multiply modelMatrix by the calculated rotation matrix
 
   // Pass the model matrix to the vertex shader
