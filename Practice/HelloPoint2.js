@@ -3,13 +3,13 @@ var VSHADER_SOURCE =
   'attribute vec4 a_Position;\n' + // attribute variable
   'void main() {\n' +
   '  gl_Position = a_Position;\n' +
-  '  gl_PointSize = 10.0;\n' +
+  '  gl_PointSize = 20.0;\n' +
   '}\n'; 
 
 // Fragment shader program
 var FSHADER_SOURCE = 
   'void main() {\n' +
-  '  gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);\n' +
+  '  gl_FragColor = vec4(1.0, 0.9, 0.0, 1.0);\n' +
   '}\n';
 
 function main() {
@@ -40,7 +40,7 @@ function main() {
   gl.vertexAttrib3f(a_Position, 0.0, 0.0, 0.0);
 
   // Specify the color for clearing <canvas>
-  gl.clearColor(0.0, 0.0, 0.0, 1.0);
+  gl.clearColor(0.5, 0.0, 0.6, 1.0);
 
   // Clear <canvas>
   gl.clear(gl.COLOR_BUFFER_BIT);
