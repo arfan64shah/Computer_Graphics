@@ -53,10 +53,10 @@ function click(ev, gl, canvas, a_Position) {
   x = ((x - rect.left) - canvas.width/2)/(canvas.width/2);
   y = (canvas.height/2 - (y - rect.top))/(canvas.height/2);
   // Store the coordinates to g_points array
-  g_points.push(x); g_points.push(y);
+  g_points.push(x, y);
 
   // Clear <canvas>
-  //gl.clear(gl.COLOR_BUFFER_BIT);
+  gl.clear(gl.COLOR_BUFFER_BIT);
 
   var len = g_points.length;
   for(var i = 0; i < len; i += 2) {
