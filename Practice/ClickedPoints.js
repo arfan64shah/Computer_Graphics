@@ -59,9 +59,10 @@ function click(ev, gl, canvas, a_Position) {
   gl.clear(gl.COLOR_BUFFER_BIT);
 
   var len = g_points.length;
-  for(var i = 0; i < len; i += 2) {
+  for(var i = 0; i < len; i++) {
     // Pass the position of a point to a_Position variable
-    gl.vertexAttrib3f(a_Position, g_points[i], g_points[i+1], 0.0);
+    var xy = g_points[i];
+    gl.vertexAttrib3f(a_Position, xy[0], xy[1], 0.0);
 
     // Draw
     gl.drawArrays(gl.POINTS, 0, 1);
