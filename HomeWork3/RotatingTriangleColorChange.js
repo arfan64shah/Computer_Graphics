@@ -99,7 +99,12 @@ function initVertexBuffers(gl) {
 }
 
 function draw(gl, n, currentAngle, modelMatrix, u_ModelMatrix) {
-  var colors = [
+
+   // varies from 0 to 6
+  radius = 6*currentAngle / 360;
+  // varies from 0 to 1
+  fac = 1 - (radius - Math.floor(radius)); 
+  r = [
     [0.0, 0.0, 1.0], 
     [0.6, 0.0, 0.6], 
     [0.9, 0.0, 0.0], 
@@ -108,21 +113,61 @@ function draw(gl, n, currentAngle, modelMatrix, u_ModelMatrix) {
     [0.0, 0.6, 0.6],
     [0.0, 0.0, 1.0], 
     [0.6, 0.0, 0.6], 
-  ] 
-    
-  r = 6*currentAngle / 360; // varies from 0 to 6
-  k = Math.floor(r);
-  fac = 1 - (r - k); // varies from 0 to 1
-  red = colors[k][0] * fac + colors[k + 1][0] * (1 - fac)
-  green =colors[k][1] * fac + colors[k + 1][1] * (1 - fac)
-  blue =colors[k][2] * fac + colors[k + 1][2] * (1 - fac)
+  ][Math.floor(radius)][0] * fac + [
+    [0.0, 0.0, 1.0], 
+    [0.6, 0.0, 0.6], 
+    [0.9, 0.0, 0.0], 
+    [0.6, 0.6, 0.0],
+    [0.0, 0.8, 0.0],
+    [0.0, 0.6, 0.6],
+    [0.0, 0.0, 1.0], 
+    [0.6, 0.0, 0.6], 
+  ][Math.floor(radius) + 1][0] * (1 - fac)
+  g =[
+    [0.0, 0.0, 1.0], 
+    [0.6, 0.0, 0.6], 
+    [0.9, 0.0, 0.0], 
+    [0.6, 0.6, 0.0],
+    [0.0, 0.8, 0.0],
+    [0.0, 0.6, 0.6],
+    [0.0, 0.0, 1.0], 
+    [0.6, 0.0, 0.6], 
+  ][Math.floor(radius)][1] * fac + [
+    [0.0, 0.0, 1.0], 
+    [0.6, 0.0, 0.6], 
+    [0.9, 0.0, 0.0], 
+    [0.6, 0.6, 0.0],
+    [0.0, 0.8, 0.0],
+    [0.0, 0.6, 0.6],
+    [0.0, 0.0, 1.0], 
+    [0.6, 0.0, 0.6], 
+  ][Math.floor(radius) + 1][1] * (1 - fac)
+  b =[
+    [0.0, 0.0, 1.0], 
+    [0.6, 0.0, 0.6], 
+    [0.9, 0.0, 0.0], 
+    [0.6, 0.6, 0.0],
+    [0.0, 0.8, 0.0],
+    [0.0, 0.6, 0.6],
+    [0.0, 0.0, 1.0], 
+    [0.6, 0.0, 0.6], 
+  ][Math.floor(radius)][2] * fac + [
+    [0.0, 0.0, 1.0], 
+    [0.6, 0.0, 0.6], 
+    [0.9, 0.0, 0.0], 
+    [0.6, 0.6, 0.0],
+    [0.0, 0.8, 0.0],
+    [0.0, 0.6, 0.6],
+    [0.0, 0.0, 1.0], 
+    [0.6, 0.0, 0.6], 
+  ][Math.floor(radius) + 1][2] * (1 - fac)
 
   var u_FragColor = gl.getUniformLocation(gl.program, 'u_FragColor');
   if (!u_FragColor) {
     console.log('Failed to get the storage location of u_FragColor');
     return;
   }
-  gl.uniform4f(u_FragColor, red, green, blue, 1);
+  gl.uniform4f(u_FragColor, r, g, b, 1);
 
 
   // Set the rotation matrix
