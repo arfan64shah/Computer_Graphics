@@ -1,4 +1,3 @@
-// RotatingTriangle.js (c) 2012 matsuda
 // Vertex shader program
 var VSHADER_SOURCE =
   'attribute vec4 a_Position;\n' +
@@ -9,9 +8,12 @@ var VSHADER_SOURCE =
 
 // Fragment shader program
 var FSHADER_SOURCE =
+  'precision mediump float;\n' +
+  'uniform vec4 u_FragColor;\n' +  //declaring uniform fragcolor to take color from javascript
   'void main() {\n' +
-  '  gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);\n' +
+  '  gl_FragColor = u_FragColor;\n' +
   '}\n';
+
 
 // Rotation angle (degrees/second)
 var ANGLE_STEP = 60.0;
@@ -45,18 +47,18 @@ function main() {
 
   // Get storage location of u_ModelMatrix
   var u_ModelMatrix = gl.getUniformLocation(gl.program, 'u_ModelMatrix');
-  if (!u_ModelMatrix) { 
+  if (!u_ModelMatrix) {
     console.log('Failed to get the storage location of u_ModelMatrix');
     return;
   }
 
   // Current rotation angle
-  var currentAngle = 0.0;
+  var currentAngle = 90.0;
   // Model matrix
   var modelMatrix = new Matrix4();
 
   // Start drawing
-  var tick = function() {
+  var tick = function () {
     currentAngle = animate(currentAngle);  // Update the rotation angle
     draw(gl, n, currentAngle, modelMatrix, u_ModelMatrix);   // Draw the triangle
     requestAnimationFrame(tick, canvas); // Request that the browser calls tick
@@ -65,8 +67,8 @@ function main() {
 }
 
 function initVertexBuffers(gl) {
-  var vertices = new Float32Array ([
-    0, 0.5,   -0.5, -0.5,   0.5, -0.5
+  var vertices = new Float32Array([
+    0, 0.5, -0.5, -0.5, 0.5, -0.5
   ]);
   var n = 3;   // The number of vertices
 
@@ -84,7 +86,7 @@ function initVertexBuffers(gl) {
 
   // Assign the buffer object to a_Position variable
   var a_Position = gl.getAttribLocation(gl.program, 'a_Position');
-  if(a_Position < 0) {
+  if (a_Position < 0) {
     console.log('Failed to get the storage location of a_Position');
     return -1;
   }
@@ -97,9 +99,35 @@ function initVertexBuffers(gl) {
 }
 
 function draw(gl, n, currentAngle, modelMatrix, u_ModelMatrix) {
+  var colors = [
+    [0.0, 0.0, 1.0], 
+    [0.6, 0.0, 0.6], 
+    [0.9, 0.0, 0.0], 
+    [0.6, 0.6, 0.0],
+    [0.0, 0.8, 0.0],
+    [0.0, 0.6, 0.6],
+    [0.0, 0.0, 1.0], 
+    [0.6, 0.0, 0.6], 
+  ] 
+    
+  r = 6*currentAngle / 360; // varies from 0 to 6
+  k = Math.floor(r);
+  fac = 1 - (r - k); // varies from 0 to 1
+  red = colors[k][0] * fac + colors[k + 1][0] * (1 - fac)
+  green =colors[k][1] * fac + colors[k + 1][1] * (1 - fac)
+  blue =colors[k][2] * fac + colors[k + 1][2] * (1 - fac)
+
+  var u_FragColor = gl.getUniformLocation(gl.program, 'u_FragColor');
+  if (!u_FragColor) {
+    console.log('Failed to get the storage location of u_FragColor');
+    return;
+  }
+  gl.uniform4f(u_FragColor, red, green, blue, 1);
+
+
   // Set the rotation matrix
   modelMatrix.setRotate(currentAngle, 0, 0, 1); // Rotation angle, rotation axis (0, 0, 1)
- 
+
   // Pass the rotation matrix to the vertex shader
   gl.uniformMatrix4fv(u_ModelMatrix, false, modelMatrix.elements);
 
