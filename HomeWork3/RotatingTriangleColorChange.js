@@ -16,7 +16,7 @@ var FSHADER_SOURCE =
 
 
 // Rotation angle (degrees/second)
-var ANGLE_STEP = 60.0;
+var ANGLE_STEP = 45.0;
 
 function main() {
   // Retrieve <canvas> element
