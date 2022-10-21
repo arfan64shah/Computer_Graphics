@@ -42,14 +42,14 @@ function main() {
   gl.clear(gl.COLOR_BUFFER_BIT);
 
   // Draw the rectangle
-  gl.drawArrays(gl.LINE_LOOP, 0, n);
+  gl.drawArrays(gl.TRIANGLE_FAN, 0, n);
 }
 
 function initVertexBuffers(gl) {
   var vertices = new Float32Array([
-    0, 0.5,   -0.5, -0.5,   0.5, -0.5
+    -0.5, 0.5,  -0.5, -0.5,  0.5, 0.5,  0.5, -0.5, 
   ]);
-  var n = 3; // The number of vertices
+  var n = 4; // The number of vertices
 
   // Create a buffer object
   var vertexBuffer = gl.createBuffer();
