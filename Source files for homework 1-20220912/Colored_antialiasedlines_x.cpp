@@ -116,6 +116,7 @@ int main(int argc, char** argv) {
 		x1 = x2;
 		y1 = y2;
 		}
-	write_bmp(filename, (char*) image, image_size, width);
+	//write_bmp(filename, (char*) image, image_size, width);
+	write_bmp((char*) "Colored_antialiasedlines_x.bmp", (char*) image, image_size, width);
 	return 1;
 	}
