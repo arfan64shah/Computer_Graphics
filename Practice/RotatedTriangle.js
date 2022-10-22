@@ -1,4 +1,3 @@
-// RotatedTriangle.js (c) 2012 matsuda
 // Vertex shader program
 var VSHADER_SOURCE =
   // x' = x cosβ - y sinβ
@@ -20,7 +19,7 @@ var FSHADER_SOURCE =
   '}\n';
 
 // The rotation angle
-var ANGLE = 90.0; 
+var ANGLE = 180.0; 
 
 function main() {
   // Retrieve <canvas> element
