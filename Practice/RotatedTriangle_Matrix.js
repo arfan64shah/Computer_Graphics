@@ -10,13 +10,13 @@ var VSHADER_SOURCE =
 // Fragment shader program
 var FSHADER_SOURCE =
   'void main() {\n' +
-  '  gl_FragColor = vec4(0.0, 0.5, 0.5, 1.0);\n' +
+  '  gl_FragColor = vec4(0.2, 0.7, 0.4, 1.0);\n' +
   '}\n';
 
 // The rotation angle
 //var ANGLE = 90.0;
 //var Tx = 0.1, Ty = 0.5, Tz = 0.0;
-var Sx = 1.2, Sy = 1.3, Sz = 1.0; 
+var Sx = 2.0, Sy = 2.0, Sz = 1.0; 
 
 function main() {
   // Retrieve <canvas> element
