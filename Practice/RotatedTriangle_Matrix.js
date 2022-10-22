@@ -14,7 +14,8 @@ var FSHADER_SOURCE =
   '}\n';
 
 // The rotation angle
-var ANGLE = 90.0;
+//var ANGLE = 90.0;
+var Tx = 0.1, Ty = 0.5, Tz = 0.0; 
 
 function main() {
   // Retrieve <canvas> element
@@ -41,15 +42,15 @@ function main() {
   }
 
   // Create a rotation matrix
-  var radian = Math.PI * ANGLE / 180.0; // Convert to radians
-  var cosB = Math.cos(radian), sinB = Math.sin(radian);
+  //var radian = Math.PI * ANGLE / 180.0; // Convert to radians
+  //var cosB = Math.cos(radian), sinB = Math.sin(radian);
 
   // Note: WebGL is column major order
   var xformMatrix = new Float32Array([
-     cosB, sinB, 0.0, 0.0,
-    -sinB, cosB, 0.0, 0.0,
-      0.0,  0.0, 1.0, 0.0,
-      0.0,  0.0, 0.0, 1.0
+    1.0, 0.0, 0.0, 0.0,
+    0.0, 1.0, 0.0, 0.0,
+    0.0, 0.0, 1.0, 0.0,
+    Tx, Ty, Tz, 1.0
   ]);
 
   // Pass the rotation matrix to the vertex shader
