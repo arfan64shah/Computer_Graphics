@@ -16,7 +16,7 @@ var FSHADER_SOURCE =
 // The rotation angle
 //var ANGLE = 90.0;
 //var Tx = 0.1, Ty = 0.5, Tz = 0.0;
-var Sx = 1.0, Sy = 1.5, Sz = 1.0; 
+var Sx = 1.5, Sy = 1.5, Sz = 1.0; 
 
 function main() {
   // Retrieve <canvas> element
