@@ -12,5 +12,5 @@ function main() {
 
   // Draw a blue rectangle
   ctx.fillStyle = 'rgba(0, 255, 0, 0.7)'; // Set color to blue
-  ctx.fillRect(120, 10, 150, 150);        // Fill a rectangle with the color
+  ctx.fillRect(120, 10, 200, 200);        // Fill a rectangle with the color
 }
