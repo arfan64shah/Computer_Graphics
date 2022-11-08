@@ -1,8 +1,8 @@
-// HelloPoint1.js (c) 2012 matsuda
+
 // Vertex shader program
 var VSHADER_SOURCE = 
   'void main() {\n' +
-  '  gl_Position = vec4(0.0, 0.9, 0.0, 1.0);\n' + // Set the vertex coordinates of the point
+  '  gl_Position = vec4(0.0, 0.0, 0.0, 1.0);\n' + // Set the vertex coordinates of the point
   '  gl_PointSize = 20.0;\n' +                    // Set the point size
   '}\n';
 
@@ -13,18 +13,18 @@ var FSHADER_SOURCE =
   '}\n';
 
 
-//here we are putting another colored dot
-var VSHADER_SOURCE = 
-  'void main() {\n' +
-  '  gl_Position = vec4(0.0, 0.5, 0.0, 1.0);\n' + // Set the vertex coordinates of the point
-  '  gl_PointSize = 20.0;\n' +                    // Set the point size
-  '}\n';
+// //here we are putting another colored dot
+// var VSHADER_SOURCE = 
+//   'void main() {\n' +
+//   '  gl_Position = vec4(0.0, 0.1, 0.0, 1.0);\n' + // Set the vertex coordinates of the point
+//   '  gl_PointSize = 20.0;\n' +                    // Set the point size
+//   '}\n';
 
-// Fragment shader program
-var FSHADER_SOURCE =
-  'void main() {\n' +
-  '  gl_FragColor = vec4(0.0, 1.0, 0.0, 1.0);\n' + // Set the point color
-  '}\n';
+// // Fragment shader program
+// var FSHADER_SOURCE =
+//   'void main() {\n' +
+//   '  gl_FragColor = vec4(0.0, 1.0, 0.0, 1.0);\n' + // Set the point color
+//   '}\n';
 
 function main() {
   // Retrieve <canvas> element
@@ -44,7 +44,7 @@ function main() {
   }
 
   // Specify the color for clearing <canvas>
-  gl.clearColor(0.0, 0.0, 0.0, 1.0);
+  gl.clearColor(1.0, 1.0, 0.0, 1.0);
 
   // Clear <canvas>
   gl.clear(gl.COLOR_BUFFER_BIT);
@@ -52,6 +52,6 @@ function main() {
   // Draw a point
   gl.drawArrays(gl.POINTS, 0, 1);
 
-  //draw a second point
-  gl.drawArrays(gl.POINTS, 1, 2);
+  // //draw a second point
+  // gl.drawArrays(gl.POINTS, 1, 2);
 }
