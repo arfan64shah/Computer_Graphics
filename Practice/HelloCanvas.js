@@ -1,4 +1,4 @@
-// HelloCanvas.js (c) 2012 matsuda
+
 function main() {
   // Retrieve <canvas> element
   var canvas = document.getElementById('webgl');
